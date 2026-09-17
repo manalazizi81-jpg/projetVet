@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { hash } from "bcrypt";
 
@@ -23,13 +24,15 @@ async function main() {
       create: { slug, title, shortDescription, description: shortDescription, icon, isPublished: true }
     });
   }
-  if (process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD) {
-    await prisma.admin.upsert({
-      where: { email: process.env.ADMIN_EMAIL.toLowerCase() },
-      update: {},
-      create: { email: process.env.ADMIN_EMAIL.toLowerCase(), fullName: "Administration Atlas", passwordHash: await hash(process.env.ADMIN_PASSWORD, 12) }
-    });
-  }
+  const adminEmail = (process.env.ADMIN_EMAIL || "admin@atlas-vet.ma").toLowerCase();
+  const adminPassword = process.env.ADMIN_PASSWORD || "AtlasAdmin2026!";
+  const passwordHash = await hash(adminPassword, 12);
+  await prisma.admin.upsert({
+    where: { email: adminEmail },
+    update: { passwordHash, isActive: true },
+    create: { email: adminEmail, fullName: "Administration Atlas", passwordHash, isActive: true }
+  });
+  console.log(`Admin user seeded successfully: ${adminEmail}`);
   const now = new Date();
   for (let offset = 1; offset <= 30; offset++) {
     const day = new Date(now);
