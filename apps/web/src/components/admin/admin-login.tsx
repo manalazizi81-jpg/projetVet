@@ -23,12 +23,16 @@ export function AdminLogin() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: data.get("email"), password: data.get("password") }),
       });
-      if (!response.ok) throw new Error();
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message ?? (response.status === 401 ? "Email ou mot de passe incorrect." : `Erreur serveur (${response.status})`));
+      }
       const body = await response.json();
       sessionStorage.setItem("atlas_admin_token", body.accessToken);
       router.push("/admin");
-    } catch {
-      setError("Email ou mot de passe incorrect.");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Erreur de connexion au serveur.";
+      setError(msg || "Email ou mot de passe incorrect.");
     } finally {
       setLoading(false);
     }
