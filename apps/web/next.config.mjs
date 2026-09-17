@@ -19,9 +19,14 @@ const nextConfig = {
     }];
   },
   async rewrites() {
-    // En développement npm, Next.js transmet /api au service NestJS local.
-    // En production, vercel.json route /api directement vers le service API.
-    return process.env.VERCEL ? [] : [
+    const apiUrl = process.env.API_PROXY_TARGET || process.env.NEXT_PUBLIC_API_URL;
+    if (apiUrl && apiUrl.startsWith("http")) {
+      const cleanTarget = apiUrl.replace(/\/api\/?$/, "");
+      return [
+        { source: "/api/:path*", destination: `${cleanTarget}/api/:path*` }
+      ];
+    }
+    return [
       { source: "/api/:path*", destination: "http://localhost:4000/api/:path*" }
     ];
   },
