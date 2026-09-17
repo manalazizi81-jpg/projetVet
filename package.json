@@ -1,0 +1,25 @@
+{
+  "name": "projet-vet",
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.34.5",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,green \"npm:dev:web\" \"npm:dev:api\"",
+    "dev:web": "npm run dev --workspace=@projet-vet/web",
+    "dev:api": "npm run start:dev --workspace=@projet-vet/api",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "db:generate": "npm run prisma:generate --workspace=@projet-vet/api",
+    "db:migrate": "npm run prisma:migrate --workspace=@projet-vet/api",
+    "db:seed": "npm run prisma:seed --workspace=@projet-vet/api"
+  },
+  "dependencies": {
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": { "node": ">=20" }
+}

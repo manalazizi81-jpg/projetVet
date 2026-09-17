@@ -1,0 +1,2 @@
+import { IsEmail, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+export class CreateContactDto { @IsString() @MinLength(2) @MaxLength(120) fullName:string; @IsEmail() @MaxLength(254) email:string; @IsOptional() @IsString() @MaxLength(30) phone?:string; @IsString() @MinLength(3) @MaxLength(180) subject:string; @IsString() @MinLength(10) @MaxLength(2000) message:string; @IsOptional() @IsString() @MaxLength(0) website?:string; }

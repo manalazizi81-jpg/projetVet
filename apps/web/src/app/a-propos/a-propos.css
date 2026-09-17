@@ -1,0 +1,39 @@
+.about-page { background: #f8fbfb; }
+.about-hero { display: flex; align-items: end; min-height: clamp(700px, 92.5svh, 860px); padding: 180px 0 110px; background-color: #103f4a; background-image: linear-gradient(90deg, rgba(10, 27, 39, .78), rgba(10, 27, 39, .42) 65%, rgba(10, 27, 39, .28)), linear-gradient(0deg, rgba(10, 27, 39, .72), transparent 78%), url('/images/a-propos-background.png'); background-position: center, center, center; background-size: cover; background-repeat: no-repeat; color: #fff; }
+.about-eyebrow, .about-kicker { display: inline-flex; align-items: center; gap: 8px; color: #0b7181; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.about-hero .about-eyebrow { color: #a6e7e4; }
+.about-hero h1 { max-width: 670px; margin: 18px 0; color: #fff; font-size: clamp(43px, 5vw, 72px); line-height: 1.07; letter-spacing: -.05em; }
+.about-hero h1 em { color: #54d0ca; font-family: var(--font-fraunces), Georgia, serif; font-weight: 500; font-style: normal; }
+.about-hero p { max-width: 580px; margin: 0 0 24px; color: #e2edef; font-size: clamp(15px, 1.2vw, 17px); line-height: 1.75; }
+.about-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 12px 20px; border: 1px solid transparent; border-radius: 12px; font-size: 14px; font-weight: 750; transition: background .2s ease, transform .2s ease; }
+.about-button:hover { transform: translateY(-2px); }
+.about-button-primary { background: #3ec8bf; color: #0a2730; }
+.about-button-primary:hover { background: #72ded6; }
+.about-intro { padding: clamp(68px, 8vw, 105px) 0; background: #fff; }
+.about-intro-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(35px, 7vw, 100px); }
+.about-intro-image { position: relative; min-height: 500px; overflow: hidden; border-radius: 25px; background: #e3f3f5; box-shadow: 0 20px 44px rgba(16, 63, 74, .1); }
+.about-intro-image img { object-fit: cover; object-position: center; }
+.about-intro-copy h2, .about-section-heading h2, .about-visit h2 { margin: 12px 0 18px; color: #17343b; font-size: clamp(30px, 3vw, 42px); line-height: 1.18; letter-spacing: -.035em; }
+.about-intro-copy p { color: #526b71; font-size: 15px; line-height: 1.8; }
+.about-intro-copy ul { display: grid; gap: 13px; padding: 0; margin: 24px 0 0; list-style: none; }
+.about-intro-copy li { display: flex; align-items: flex-start; gap: 10px; color: #37545b; font-size: 14px; line-height: 1.6; }
+.about-intro-copy li svg { flex: none; margin-top: 3px; color: #087587; }
+.about-commitments { padding: clamp(65px, 8vw, 95px) 0; }
+.about-section-heading { max-width: 620px; margin: 0 auto 34px; text-align: center; }
+.about-commitments-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.about-commitment { padding: 30px; border: 1px solid #e2edef; border-radius: 21px; background: #fff; box-shadow: 0 10px 30px rgba(16, 63, 74, .05); }
+.about-commitment-icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 20px; border-radius: 15px; background: #e3f3f5; color: #087587; }
+.about-commitment h3 { margin: 0 0 9px; color: #17343b; font-size: 20px; }
+.about-commitment p { margin: 0; color: #526b71; font-size: 14px; line-height: 1.7; }
+.about-visit { padding: 0 0 95px; }
+.about-visit-panel { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: clamp(32px, 5vw, 58px); border-radius: 25px; background: linear-gradient(120deg, #103f4a, #087587); color: #fff; }
+.about-visit .about-kicker { color: #a6e7e4; }
+.about-visit h2 { max-width: 590px; margin-bottom: 10px; color: #fff; }
+.about-visit p { margin: 0; color: #d9eff2; font-size: 15px; line-height: 1.6; }
+.about-visit-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.about-button-light { background: #fff; color: #125462; }
+.about-button-light:hover { background: #e6f4f6; }
+.about-button-outline { border-color: rgba(255, 255, 255, .55); color: #fff; }
+.about-button-outline:hover { background: rgba(255, 255, 255, .1); }
+@media (max-width: 900px) { .about-intro-grid { grid-template-columns: 1fr; } .about-intro-image { min-height: 420px; } .about-visit-panel { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 620px) { .about-hero { min-height: 100svh; padding: 155px 0 85px; background-position: center, center, 65% center; } .about-hero h1 { font-size: clamp(40px, 11vw, 55px); } .about-intro-image { min-height: 330px; } .about-commitments-grid { grid-template-columns: 1fr; } .about-visit-actions, .about-visit-actions .about-button { width: 100%; } }

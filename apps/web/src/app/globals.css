@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Palette du logo Atlas : bleu pétrole, turquoise et blanc cassé. */
+  --primary-900: #103F4A;
+  --primary-800: #125462;
+  --primary-700: #087587;
+  --primary-600: #0A8797;
+  --primary-500: #2A9BA9;
+  --primary-100: #E3F3F5;
+  --primary-50: #F2FAFA;
+
+  --accent-gold: #69B4C0;
+  --accent-gold-light: #E8F5F6;
+
+  --bg-page: #FFFFFF;
+  --bg-soft: #F3F9FA;
+  --bg-warm: #F7FAFA;
+  --bg-card: #FFFFFF;
+
+  --text-main: #17343B;
+  --text-muted: #526B71;
+  --text-light: #71888D;
+
+  --border-soft: #DFEAEC;
+  --border-subtle: #EAF1F2;
+
+  --shadow-sm: 0 2px 8px rgba(16, 63, 74, 0.04);
+  --shadow-md: 0 8px 24px rgba(16, 63, 74, 0.06);
+  --shadow-lg: 0 16px 40px rgba(16, 63, 74, 0.08);
+  --shadow-button: 0 4px 16px rgba(8, 117, 135, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.form-alert { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; margin: 0; border: 1px solid; border-radius: 14px; box-shadow: 0 8px 22px rgba(16,63,74,.05); font-size: 14px; line-height: 1.6; }
+.form-alert-success { border-color: #c8e5dd; background: #f0faf6; color: #146f59; }
+.form-alert-error { border-color: #f3d3d0; background: #fff7f5; color: #9b373b; }
+.form-alert-icon { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: rgba(255,255,255,.8); }
+.form-alert > span:last-child { padding-top: 3px; }
+
+html {
+  scroll-behavior: auto;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 480ms ease, transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 100% Modern Sans-Serif Typography for titles */
+h1, h2, h3, h4 {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Clean container */
+.site-container {
+  width: min(1200px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #20BA59;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.35);
+}
+
+/* Floating WhatsApp button */
+.whatsapp-float-fixed {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 14.5px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s ease;
+}
+
+.whatsapp-float-fixed:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
+}
+
+html[data-language-pending="en"] body {
+  visibility: hidden;
+}
+
+/* Prevent hero copy from flashing before its staggered entrance is initialized. */
+.atlas-reveal-pending :is(.home-hero, .about-hero, .services-hero-header, .contact-hero, .rdv-hero)
+  :is(h1, h2, h3, p, .home-kicker, .about-eyebrow, .eyebrow, .rdv-hero-eyebrow, .home-button, .about-button, .button, .services-discover, .home-quick-grid > div) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@keyframes atlas-hero-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+:is(.home-hero, .about-hero, .services-hero-header, .contact-hero, .rdv-hero)
+  :is(.home-kicker, .about-eyebrow, .eyebrow, .rdv-hero-eyebrow, h1, p:not(.hero-line-group), .home-button, .about-button, .button, .services-discover, .home-quick-grid > div, .services-hero-nav a) {
+  animation: atlas-hero-reveal 560ms cubic-bezier(.22, 1, .36, 1) backwards;
+}
+
+:is(.home-hero, .about-hero, .services-hero-header, .contact-hero, .rdv-hero) h1 { animation-delay: 90ms; }
+:is(.home-hero, .about-hero, .services-hero-header, .contact-hero, .rdv-hero) p { animation-delay: 180ms; }
+.hero-line-group > span { display: block; animation: atlas-hero-reveal 560ms cubic-bezier(.22, 1, .36, 1) backwards; }
+.hero-line-group > span:nth-child(1) { animation-delay: 180ms; }
+.hero-line-group > span:nth-child(2) { animation-delay: 245ms; }
+.hero-line-group > span:nth-child(3) { animation-delay: 310ms; }
+:is(.home-hero, .about-hero, .services-hero-header, .contact-hero, .rdv-hero) :is(.home-button, .about-button, .button, .services-discover) { animation-delay: 320ms; }
+.about-hero .about-button { animation-delay: 385ms; }
+.home-hero-actions :is(.home-button, .button):nth-child(2) { animation-delay: 385ms; }
+.home-quick-grid > div:nth-child(1), .services-hero-nav a:nth-child(1) { animation-delay: 450ms; }
+.home-quick-grid > div:nth-child(2), .services-hero-nav a:nth-child(2) { animation-delay: 515ms; }
+.home-quick-grid > div:nth-child(3), .services-hero-nav a:nth-child(3) { animation-delay: 580ms; }
+.services-hero-nav a:nth-child(4) { animation-delay: 645ms; }
+
+.gallery-page .gallery-back,
+.gallery-page .gallery-heading > span,
+.gallery-page .gallery-heading h1,
+.gallery-page .gallery-heading p {
+  animation: atlas-hero-reveal 560ms cubic-bezier(.22, 1, .36, 1) backwards;
+}
+.gallery-page .gallery-back { animation-delay: 0ms; }
+.gallery-page .gallery-heading > span { animation-delay: 65ms; }
+.gallery-page .gallery-heading h1 { animation-delay: 130ms; }
+.gallery-page .gallery-heading p { animation-delay: 220ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.home-hero, .about-hero, .services-hero-header, .contact-hero, .rdv-hero) * { animation: none !important; }
+  .gallery-page :is(.gallery-back, .gallery-heading > span, .gallery-heading h1, .gallery-heading p) { animation: none !important; }
+}

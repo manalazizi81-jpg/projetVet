@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 293 259" role="img" aria-labelledby="title">
+  <title id="title">Logo VA et montagnes du Cabinet Vétérinaire Atlas</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#124e5a"/>
+      <stop offset="1" stop-color="#087587"/>
+    </linearGradient>
+  </defs>
+  <rect width="293" height="259" fill="url(#bg)"/>
+  <path d="M69 86 114 57 128 70 149 40 171 65 181 56 214 85" fill="none" stroke="#e9e8e5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M59 103h45v5c-12 0-15 4-11 17l33 91 37-104c2-6-3-7-11-7v-4h38v5c-9 1-12 4-15 13l-47 124h-10L74 122c-4-11-7-13-15-14z" fill="#eee9e9"/>
+  <path d="M180 102h12l48 126c4 10 7 12 15 13v4h-49v-4c11 0 15-3 12-12l-11-31h-47l-11 31c-3 8 1 11 12 12v4h-37v-4c8-1 11-4 14-12zm3 30-20 56h41z" fill="#eee9e9"/>
+</svg>

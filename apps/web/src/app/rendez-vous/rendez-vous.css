@@ -1,0 +1,186 @@
+/* ── Page base ── */
+.appointment-page { background: #f0f5f8; }
+
+/* ── Hero Banner ── */
+.rdv-hero {
+  display: flex;
+  align-items: center;
+  min-height: clamp(700px, 92.5svh, 860px);
+  padding: 176px 0 80px;
+  color: #fff;
+  background-color: #103f4a;
+  background-image: linear-gradient(90deg, rgba(10, 30, 38, .88), rgba(10, 30, 38, .5) 50%, rgba(10, 30, 38, .16)), linear-gradient(0deg, rgba(10, 30, 38, .62), transparent 70%), url('/images/rendez-vous-animaux.png');
+  background-size: cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+.rdv-hero .site-container { position: relative; }
+.rdv-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #a5d8e0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.rdv-hero h1 {
+  max-width: 680px;
+  color: #fff;
+  font-size: clamp(42px, 5vw, 70px);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1.06;
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+.rdv-hero > .site-container > p {
+  color: #edf4f5;
+  font-size: clamp(16px, 1.3vw, 19px);
+  max-width: 620px;
+  line-height: 1.65;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ── Form section ── */
+.appointment-page .form-page { padding: clamp(40px, 6vw, 80px) 0 clamp(60px, 7vw, 100px); }
+.appointment-page .form-page-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); align-items: start; gap: clamp(36px, 6vw, 80px); }
+.appointment-page .form-intro { position: sticky; top: 100px; }
+
+/* ── Contact Cards ── */
+.rdv-contact-cards { display: grid; gap: 14px; margin-bottom: 36px; }
+.rdv-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e2eaec;
+  border-left-width: 4px;
+  box-shadow: 0 2px 12px rgba(16, 63, 74, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.rdv-contact-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 63, 74, 0.09); }
+.rdv-card-teal { border-left-color: var(--primary-600); }
+.rdv-card-purple { border-left-color: #7c3aed; }
+.rdv-card-orange { border-left-color: #ea8c2f; }
+.rdv-card-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.rdv-card-teal .rdv-card-icon { background: var(--primary-100); color: var(--primary-700); }
+.rdv-card-purple .rdv-card-icon { background: #ede9fe; color: #7c3aed; }
+.rdv-card-orange .rdv-card-icon { background: #fff4e5; color: #ea8c2f; }
+.rdv-card-content { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.rdv-card-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.rdv-card-value { font-size: 15px; font-weight: 700; color: var(--text-main); text-decoration: none; }
+a.rdv-card-value:hover { color: var(--primary-700); }
+.rdv-card-sub { font-size: 12.5px; color: var(--text-light); }
+
+/* ── Booking Steps ── */
+.appointment-page .booking-steps { display: grid; gap: 16px; margin-bottom: 28px; }
+.booking-steps-title { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--primary-800); margin: 0 0 4px; }
+.appointment-page .booking-steps > div { display: flex; align-items: flex-start; gap: 12px; }
+.appointment-page .booking-steps > div > span { display: grid; flex: none; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: #e3f3f5; color: #087587; }
+.appointment-page .booking-steps p { display: grid; gap: 2px; margin: 0; color: #61767b; font-size: 13.5px; line-height: 1.5; }
+.appointment-page .booking-steps strong { display: block; color: #173d43; font-size: 14px; }
+
+/* ── Urgency Note ── */
+.appointment-page .form-note { display: flex; gap: 12px; padding: 16px 18px; border: 1px solid #f0dcb5; border-radius: 16px; background: #fff9ed; color: #7c4e0d; }
+.appointment-page .form-note > svg { flex: none; margin-top: 2px; }
+.appointment-page .form-note div { display: grid; gap: 3px; }
+.appointment-page .form-note span { line-height: 1.5; font-size: 13.5px; }
+.appointment-page .form-note a { font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Booking Form ── */
+.appointment-page .booking-form { display: grid; gap: 24px; min-width: 0; padding: clamp(22px, 3.5vw, 40px); border: 1px solid #dfeaec; border-radius: 28px; background: #fff; box-shadow: 0 22px 60px rgba(16, 63, 74, 0.08); }
+.appointment-page .form-title { display: flex; align-items: center; gap: 14px; padding-bottom: 20px; border-bottom: 1px solid #e6eff0; }
+.appointment-page .form-title > svg { width: 48px; height: 48px; padding: 11px; border-radius: 14px; background: #e3f3f5; color: #087587; }
+.appointment-page .form-title h2 { margin: 0; font-size: 23px; }
+.appointment-page .form-title p { margin: 3px 0 0; color: #667b80; font-size: 13.5px; }
+.appointment-page .booking-form fieldset { display: grid; gap: 15px; min-width: 0; padding: 0; margin: 0; border: 0; }
+.appointment-page .booking-form legend { width: 100%; margin-bottom: 14px; color: #125462; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.appointment-page .booking-form .fields { display: grid; gap: 14px; }
+.appointment-page .booking-form .fields.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.appointment-page .booking-form label { display: grid; gap: 7px; min-width: 0; color: #263d2f; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.appointment-page .booking-select-wrap { display: grid; gap: 7px; min-width: 0; }
+.appointment-page .booking-select-field { position: relative; min-width: 0; }
+.appointment-page .booking-select-label { display: block; margin-bottom: 7px; color: #263d2f; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.appointment-page .booking-select-trigger { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 49px; padding: 11px 15px; border: 1.5px solid #c8dfe3; border-radius: 12px; background: #f8fbfc; color: #17343b; font: inherit; font-size: 14.5px; text-align: left; cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+.appointment-page .booking-select-trigger:hover, .appointment-page .booking-select-trigger.is-open { border-color: #0a8797; background: #fff; }
+.appointment-page .booking-select-trigger:disabled { border-color: #dde8ea; background: #f1f6f7; color: #687c80; cursor: not-allowed; }
+.appointment-page .booking-select-trigger:focus-visible { outline: none; border-color: #0a8797; box-shadow: 0 0 0 3px rgba(10, 135, 151, .14); }
+.appointment-page .booking-select-trigger svg { flex: none; color: #087587; transition: transform .2s ease; }
+.appointment-page .booking-select-trigger.is-open svg { transform: rotate(180deg); }
+.appointment-page .booking-select-placeholder { color: #71888d; }
+.appointment-page .booking-select-menu { position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 10; display: grid; gap: 3px; max-height: 280px; overflow-y: auto; padding: 7px; border: 1px solid #d8e9eb; border-radius: 14px; background: #fff; box-shadow: 0 18px 42px rgba(16, 63, 74, .18); }
+.appointment-page .booking-select-option { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 39px; padding: 8px 11px; border: 0; border-radius: 9px; background: transparent; color: #17343b; font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.appointment-page .booking-select-option:hover, .appointment-page .booking-select-option:focus-visible { outline: none; background: #e9f7f8; color: #087587; }
+.appointment-page .booking-select-option.is-selected { background: #e3f3f5; color: #087587; font-weight: 700; }
+.appointment-page .booking-select-option:disabled { background: #f5f7f8; color: #87989c; cursor: not-allowed; }
+.appointment-page .booking-form input,
+.appointment-page .booking-form select,
+.appointment-page .booking-form textarea {
+  width: 100%; min-width: 0; min-height: 46px; padding: 11px 14px;
+  border: 1.5px solid #dde8ea; border-radius: 12px; outline: none;
+  background: #f8fbfc; color: #17343b;
+  font: inherit; font-weight: 400; font-size: 14.5px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.appointment-page .booking-form textarea { resize: vertical; }
+.appointment-page .booking-form input:focus,
+.appointment-page .booking-form select:focus,
+.appointment-page .booking-form textarea:focus { border-color: #0a8797; box-shadow: 0 0 0 3px rgba(10, 135, 151, 0.12); background: #fff; }
+.appointment-page .booking-form select:disabled { background: #f1f6f7; color: #687c80; }
+.appointment-page .field-error { color: #b42332; font-size: 12px; font-weight: 600; }
+
+/* ── Form Buttons ── */
+.appointment-page .form-actions { display: flex; flex-direction: column; gap: 10px; padding-top: 8px; }
+.appointment-page .button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  min-height: 52px; padding: 13px 20px;
+  border: 1.5px solid transparent; border-radius: 999px;
+  font: inherit; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  width: 100%;
+}
+.appointment-page .button:hover { transform: translateY(-2px); }
+.appointment-page .button-primary { background: #087587; color: #fff; box-shadow: 0 6px 20px rgba(8, 117, 135, 0.22); }
+.appointment-page .button-primary:hover { background: #0d5968; box-shadow: 0 10px 28px rgba(8, 117, 135, 0.30); }
+.appointment-page .button:disabled { cursor: wait; opacity: .65; }
+.appointment-page .whatsapp-outline { border-color: #a8d7df; color: #0b7181; background: #edf8f9; }
+.appointment-page .whatsapp-outline:hover { background: #e3f3f5; }
+.appointment-page .honeypot { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; opacity: 0; pointer-events: none; }
+
+/* ── Responsive ── */
+@media (max-width: 940px) {
+  .appointment-page .form-page-grid { grid-template-columns: 1fr; }
+  .appointment-page .form-intro { position: static; }
+  .rdv-contact-cards { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .rdv-hero { min-height: 100svh; padding: 155px 0 60px; background-position: center, center, 85% center; }
+  .rdv-hero h1 { font-size: clamp(38px, 10vw, 54px); margin-bottom: 18px; }
+  .rdv-hero > .site-container > p { font-size: 16px; }
+  .rdv-contact-cards { grid-template-columns: 1fr; }
+  .appointment-page .booking-form .fields.two { grid-template-columns: 1fr; }
+  .appointment-page .form-actions .button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .appointment-page .button,
+  .rdv-contact-card,
+  .appointment-page .booking-form input,
+  .appointment-page .booking-form select,
+  .appointment-page .booking-form textarea { transition: none; }
+}
+

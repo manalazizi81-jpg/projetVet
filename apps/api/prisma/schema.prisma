@@ -1,0 +1,196 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum AnimalSpecies {
+  DOG
+  CAT
+  BIRD
+  RABBIT
+  RODENT
+  REPTILE
+  OTHER
+}
+
+enum ContactStatus {
+  NEW
+  READ
+  ARCHIVED
+}
+
+model Client {
+  id           String        @id @default(uuid()) @db.Uuid
+  fullName     String        @db.VarChar(120)
+  phone        String        @db.VarChar(30)
+  email        String        @db.VarChar(254)
+  animals      Animal[]
+  appointments Appointment[]
+  createdAt    DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(3)
+
+  @@index([email])
+  @@index([phone])
+}
+
+model Animal {
+  id                   String        @id @default(uuid()) @db.Uuid
+  clientId             String        @db.Uuid
+  name                 String        @db.VarChar(100)
+  species              AnimalSpecies
+  breed                String?       @db.VarChar(100)
+  birthDate            DateTime?     @db.Date
+  birthDateIsEstimated Boolean       @default(false)
+  client               Client        @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  appointments         Appointment[]
+  createdAt            DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt            DateTime      @updatedAt @db.Timestamptz(3)
+
+  @@index([clientId])
+}
+
+model Appointment {
+  id                 String            @id @default(uuid()) @db.Uuid
+  clientId           String            @db.Uuid
+  animalId           String            @db.Uuid
+  serviceId          String            @db.Uuid
+  slotId             String            @db.Uuid
+  status             AppointmentStatus @default(PENDING)
+  ownerName          String            @db.VarChar(120)
+  ownerPhone         String            @db.VarChar(30)
+  ownerEmail         String            @db.VarChar(254)
+  serviceLabel       String            @db.VarChar(120)
+  message            String?           @db.Text
+  adminNotes         String?           @db.Text
+  cancellationReason String?           @db.VarChar(500)
+  requestKey         String            @unique @db.Uuid
+  client             Client            @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  animal             Animal            @relation(fields: [animalId], references: [id], onDelete: Restrict)
+  service            Service           @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  slot               AvailabilitySlot  @relation(fields: [slotId], references: [id], onDelete: Restrict)
+  createdAt          DateTime          @default(now()) @db.Timestamptz(3)
+  updatedAt          DateTime          @updatedAt @db.Timestamptz(3)
+
+  @@index([slotId])
+  @@index([status, createdAt])
+  @@index([clientId])
+  @@index([animalId])
+  @@index([serviceId])
+}
+
+model AvailabilitySlot {
+  id           String        @id @default(uuid()) @db.Uuid
+  startsAt     DateTime      @unique @db.Timestamptz(3)
+  endsAt       DateTime      @db.Timestamptz(3)
+  isBlocked    Boolean       @default(false)
+  blockNote    String?       @db.VarChar(250)
+  appointments Appointment[]
+  createdAt    DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(3)
+
+  @@index([isBlocked, startsAt])
+}
+
+model Admin {
+  id           String    @id @default(uuid()) @db.Uuid
+  email        String    @unique @db.VarChar(254)
+  fullName     String    @db.VarChar(120)
+  passwordHash String    @db.VarChar(255)
+  isActive     Boolean   @default(true)
+  tokenVersion Int       @default(0)
+  lastLoginAt  DateTime? @db.Timestamptz(3)
+  createdAt    DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime  @updatedAt @db.Timestamptz(3)
+}
+
+model Service {
+  id               String        @id @default(uuid()) @db.Uuid
+  slug             String        @unique @db.VarChar(120)
+  title            String        @db.VarChar(120)
+  shortDescription String        @db.VarChar(300)
+  description      String        @db.Text
+  icon             String        @db.VarChar(60)
+  imageUrl         String?       @db.VarChar(2048)
+  imageAlt         String?       @db.VarChar(250)
+  isPublished      Boolean       @default(false)
+  isBookable       Boolean       @default(true)
+  sortOrder        Int           @default(0)
+  appointments     Appointment[]
+  createdAt        DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt        DateTime      @updatedAt @db.Timestamptz(3)
+}
+
+model TeamMember {
+  id           String   @id @default(uuid()) @db.Uuid
+  fullName     String   @db.VarChar(120)
+  role         String   @db.VarChar(120)
+  specialties  String[]
+  biography    String?  @db.Text
+  photoUrl     String?  @db.VarChar(2048)
+  photoAlt     String?  @db.VarChar(250)
+  isPublished  Boolean  @default(false)
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime @updatedAt @db.Timestamptz(3)
+}
+
+model Testimonial {
+  id          String   @id @default(uuid()) @db.Uuid
+  authorName  String   @db.VarChar(120)
+  animalName  String?  @db.VarChar(100)
+  text        String   @db.Text
+  rating      Int
+  photoUrl    String?  @db.VarChar(2048)
+  photoAlt    String?  @db.VarChar(250)
+  isPublished Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(3)
+}
+
+model ContactMessage {
+  id        String        @id @default(uuid()) @db.Uuid
+  fullName  String        @db.VarChar(120)
+  email     String        @db.VarChar(254)
+  phone     String?       @db.VarChar(30)
+  subject   String        @db.VarChar(180)
+  message   String        @db.Text
+  status    ContactStatus @default(NEW)
+  readAt    DateTime?     @db.Timestamptz(3)
+  createdAt DateTime      @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime      @updatedAt @db.Timestamptz(3)
+
+  @@index([status, createdAt])
+}
+
+model GalleryPhoto {
+  id          String   @id @default(uuid()) @db.Uuid
+  alt         String   @db.VarChar(250)
+  mimeType    String   @db.VarChar(50)
+  data        Bytes
+  isPublished Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(3)
+
+  @@index([isPublished, sortOrder, createdAt])
+}
+
+model RequestRateLimit {
+  key         String   @id @db.VarChar(64)
+  windowStart DateTime @db.Timestamptz(3)
+  count       Int
+
+  @@index([windowStart])
+}
